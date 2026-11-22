@@ -1,0 +1,27 @@
+def heapify(nums, n, i):
+    # largest as it should be
+    smallest = i
+    left = (2*i) + 1
+    right = (2*i) + 2
+    
+    # Check if there exists right or left and is greater then the node
+    if(left < n and nums[left] < nums[smallest]):
+        smallest = left
+    if(right < n and nums[right] < nums[smallest]):
+            largest = right
+            
+    # If nothing changes then the tree is all right but if something got changed 
+    if(smallest != i):
+        # Swapping the child and the parent 
+        nums[i], nums[smallest] = nums[smallest], nums[i]
+        # Calling back the function to goo down the tree checking the subnodes
+        heapify(nums, n, smallest)
+    
+    
+def min_heap(nums):
+    n = len(nums)
+    # Find the last parent node
+    last_parent = ((n//2) - 1)
+    for i in range(last_parent, -1, -1):
+        heapify(nums, n, i)
+    

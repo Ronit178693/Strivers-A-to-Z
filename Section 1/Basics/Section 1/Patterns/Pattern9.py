@@ -1,0 +1,19 @@
+for i in range(5):
+    # n-i-1 for the widespaces
+    for j in range(5-i-1):
+            print(" ", end = "")
+    # 2i+1 for the stars 
+    for j in range(2*i+1):
+        print("*", end = "")
+    for j in range(5-i-1):
+            print(" ", end = "")
+    print("\n")
+    
+for a in range(5):
+    for j in range(a):
+        print(" ", end = "")
+    for j in range(2*5-2*a-1):
+        print("*", end = "")
+    for j in range(a):
+        print(" ", end = "")
+    print("\n")
