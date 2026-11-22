@@ -17,13 +17,13 @@ def topological_sort(v, adj):
         # The node was not visited so we will first mark it visited 
         visited[starting_node] = 1
         # also append the element to the stack
-        st.append(starting_node)
-        
+ 
         # Iterating through the adj. nodes
         for i in adj[starting_node]:
              if(visited[i] == -1):
                  dfs_helper(i)
-        st.append(push)
+        st.append(starting_node)
+        
     
     
     for i in range(v):
