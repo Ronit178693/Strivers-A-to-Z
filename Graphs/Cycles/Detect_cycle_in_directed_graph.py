@@ -1,7 +1,7 @@
 '''
 For directed graph the node has to be revisited on the same path then it is a cycle 
 '''
-
+# Using DFS
 def cycle_detection(v, adj):
     # The visited array to keep the track of all the visited nodes
     visited = [-1] * v
@@ -39,3 +39,46 @@ def cycle_detection(v, adj):
                 return True
     return False
             
+
+# Using BFS
+'''
+Kahn's algo is not applicable for cyclic directed graphs we are going to detect cycle using that property
+'''
+
+from collections import deque
+# Initially we are given the adj. list and we have t oconstruct the indegree map using it 
+def indegree_table(v, adj):
+    # Making an empty table of the same size as of the number of elements 
+    indegree = [0] * v
+    # This loop populates the indegree table and returns it 
+    # Going through all the elements in the adj. list and increeasing their counts 
+    for i in adj:
+        for j in adj[i]:
+            indegree[j] += 1
+    return indegree
+
+def Kahns_traversal(v, adj):
+    # Calling the indegree_table function to get an indegree table
+    indegree = indegree_table(v, adj)
+    # Initializing the queue
+    q = deque()
+    # The list used for returning the answer
+    ans = []
+    # Going through the map to find out all the initial elements with indegree 0 and appending them to the queue
+    for i in range(len(indegree)):
+        if(indegree[i] == 0):        
+            q.append(i)
+    # Iterate through the queue until it got any elements
+    while(q):
+        # Pop out the top of the queue
+        node = q.popleft()
+        # Storing the node in the ans
+        ans.append(node)
+        # Now check for the adj. elements for that node 
+        for i in adj[node]:
+            # If there are any elements in the adj. list for that node retuce 
+            indegree[i] -= 1
+            # If the indegree of that respective adj. node turns 0 then push it in the queue
+            if(indegree[i] == 0):
+                q.append(i)
+    return ans

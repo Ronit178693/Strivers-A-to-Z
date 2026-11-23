@@ -27,9 +27,10 @@ def safe(graph):
         return False
     # Go through all the nodes if there are any connected component
     for start_node in range(v):
-        if(visited[start_node] == -1):
+        if(visited[start_node] == -1 and visited_path[start_node] == -1):
             # If the cycle is not formed then append the node inside the ans list
             dfs_helper(start_node)
+        # Proven that al the nodes whith 0 value are all safe
         if(visited_path[start_node] == 0):
             ans.append(start_node)  
     return ans
