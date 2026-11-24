@@ -81,4 +81,8 @@ def Kahns_traversal(v, adj):
             # If the indegree of that respective adj. node turns 0 then push it in the queue
             if(indegree[i] == 0):
                 q.append(i)
-    return ans
+    # Now topo sort is completed we have thr result in ans if len(ans) == v then the graph was valid and was a DAG (acyclic), otherwise i had a cycle
+    if(len(ans) == v):
+        return False
+    # Returning true because Topo sort was not successful on the graph because it was cyclic
+    return True
